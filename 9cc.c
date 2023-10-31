@@ -38,7 +38,7 @@ bool consume(char op) {
     return true;
 }
 
-bool expect(char op) {
+void expect(char op) {
     if (token->kind != TK_RESERVED || token->str[0] != op) {
         error("'%c'ではありません", op);
     }
