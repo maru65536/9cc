@@ -96,18 +96,17 @@ int main(int argc, char **argv) {
 
     token = tokenize(argv[1]);
 
-    printf(".intel_syntax noprefix\n");
-    printf(".globl main\n");
-    printf("main:\n");
-    printf("    mov rax, %d\n", expect_number());
+    printf(".globl _main\n");
+    printf("_main:\n");
+    printf("    mov x0, %d\n", expect_number());
 
     while (!at_eof()) {
         if (consume('+')) {
-            printf("    add rax, %d\n", expect_number());
+            printf("    add x0, x0, %d\n", expect_number());
             continue;
         }
         expect('-');
-        printf("  sub rax, %d\n", expect_number());
+        printf("  sub x0, x0, %d\n", expect_number());
     }
 
     printf("    ret\n");
